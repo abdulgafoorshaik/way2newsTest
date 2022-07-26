@@ -1,0 +1,39 @@
+
+
+<div class="form-div">
+    <form  formGroup="userForm" (ngSubmit)="registerUser()">
+
+        <input type="text" formControlName="username" name="username"> <br>
+        <span class="error"
+        *ngIf="userForm.controls?.username?.errors?.required && userForm.controls?.username?.touched"
+        >User name is required</span> 
+        <input type="email" formControlName="email" name="email">
+        <span class="error"
+        *ngIf="userForm.get('email').hasError('required') && userForm.get('email').touched"
+        >Email is required</span>
+        <span class="error"
+        *ngIf="userForm.get('email').hasError('pattern') && userForm.get('email').touched"
+        >Invalid Email</span>
+        <br>
+        <input type="text" formControlName="mobile" name="mobile">
+        <span class="error"
+        *ngIf="userForm.get('mobile').hasError('required') && userForm.get('mobile').touched"
+        >Mobile Number is required</span>
+        <span class="error"
+        *ngIf="userForm.get('mobile').hasError('minlength') && userForm.get('mobile').touched"
+        >Mobile Numer should be atleaset 10 digits</span>
+        <span class="error"
+        *ngIf="userForm.get('mobile').hasError('maxlength') && userForm.get('mobile').touched"
+        >Mobile Number should be maximum 10 digits</span>
+        <br>
+        <input type="file" name="image" formControlName="image" id="user_image"/>
+        <span class="error"
+        *ngIf="userForm.get('image').hasError('required') && userForm.get('image').touched"
+        >Please select image</span>
+        <br>
+        <button type="submit">Register User</button>
+
+    </form>
+
+    {{  userForm.controls?.username?.errors?.required}}
+</div>
